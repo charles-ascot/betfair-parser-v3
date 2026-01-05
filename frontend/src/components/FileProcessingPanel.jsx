@@ -102,6 +102,22 @@ export default function FileProcessingPanel({
         return sum + (r.size_bytes || 0);
       }, 0) || 0;
       setExportedSize(size);
+
+      // Trigger download for each exported file
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+      if (result.results) {
+        for (const r of result.results) {
+          if (r.status === 'success' && r.output_file) {
+            // Create download link
+            const link = document.createElement('a');
+            link.href = `${apiUrl}/export-file/${r.output_file}`;
+            link.download = r.output_file;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          }
+        }
+      }
     } catch (err) {
       console.error('Export error:', err);
     }
