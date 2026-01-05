@@ -1,0 +1,17 @@
+/* Global Styles */
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #03110D 0%, #16302B 50%, #390517 100%);
+  color: #E0E0E0;
+}
+
+* {
+  box-sizing: border-box;
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#03110D" />
+    <meta name="description" content="Betfair File Parser v3.0 - Professional financial data parsing utility for horse racing betting systems" />
+    <title>Betfair File Parser v3.0</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      html, body, #root {
+        width: 100%;
+        height: 100%;
+        font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        background: #03110D;
+        color: #E0E0E0;
+      }
+      
+      body {
+        overflow: hidden;
+      }
+      
+      .loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #03110D 0%, #16302B 50%, #390517 100%);
+      }
+      
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid rgba(224, 224, 224, 0.2);
+        border-top-color: #A38560;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+      
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    
+    <div id="root">
+      <div class="loading">
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
+  </body>
+</html>
