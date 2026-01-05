@@ -109,7 +109,8 @@ export default function FileProcessingPanel({
 
   const handleViewFile = (filename) => {
     // Open file in new tab
-    window.open(`${process.env.REACT_APP_API_URL || 'http://localhost:8000/api'}/export-file/${filename}`, '_blank');
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
+    window.open(`${apiUrl}/export-file/${filename}`, '_blank');
   };
 
   return (
