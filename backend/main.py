@@ -64,6 +64,11 @@ class SystemStatus(BaseModel):
     cache_status: CacheStatus
 
 
+class ParseRequest(BaseModel):
+    """Parse request parameters"""
+    files: Optional[List[str]] = None
+
+
 class ExportRequest(BaseModel):
     """Export request parameters"""
     files: List[str]
@@ -422,10 +427,11 @@ async def list_uploaded_files() -> List[Dict[str, Any]]:
 # ============================================================================
 
 @app.post("/api/parse")
-async def parse_files(files: List[str] = None) -> Dict[str, Any]:
+async def parse_files(request: ParseRequest = None) -> Dict[str, Any]:
     """Parse uploaded Betfair data files"""
     parse_results = []
 
+    files = request.files if request and request.files else None
     if not files:
         uploaded = await storage.list_files("uploaded")
         files = [f["filename"] for f in uploaded]
