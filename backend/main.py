@@ -566,6 +566,21 @@ async def export_files(request: ExportRequest) -> Dict[str, Any]:
     }
 
 
+@app.get("/api/parsed-file/{filename}")
+async def view_parsed_file(filename: str):
+    """View parsed file content"""
+    if storage.use_firebase:
+        content = await storage.read_file("parsed", filename)
+        if not content:
+            raise HTTPException(status_code=404, detail="File not found")
+        return Response(content=content, media_type="application/json")
+    else:
+        file_path = await storage.get_file_path("parsed", filename)
+        if not file_path:
+            raise HTTPException(status_code=404, detail="File not found")
+        return FileResponse(file_path, filename=filename, media_type="application/json")
+
+
 @app.get("/api/export-file/{filename}")
 async def download_exported_file(filename: str):
     """Download exported file"""

@@ -124,9 +124,9 @@ export default function FileProcessingPanel({
   };
 
   const handleViewFile = (filename) => {
-    // Open file in new tab
+    // Open parsed file in new tab
     const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
-    window.open(`${apiUrl}/export-file/${filename}`, '_blank');
+    window.open(`${apiUrl}/parsed-file/${filename}`, '_blank');
   };
 
   return (
