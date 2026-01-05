@@ -15,7 +15,7 @@
         padding: 0;
         box-sizing: border-box;
       }
-      
+
       html, body, #root {
         width: 100%;
         height: 100%;
@@ -23,11 +23,11 @@
         background: #03110D;
         color: #E0E0E0;
       }
-      
+
       body {
         overflow: hidden;
       }
-      
+
       .loading {
         display: flex;
         justify-content: center;
@@ -36,7 +36,7 @@
         height: 100%;
         background: linear-gradient(135deg, #03110D 0%, #16302B 50%, #390517 100%);
       }
-      
+
       .loading-spinner {
         width: 50px;
         height: 50px;
@@ -45,7 +45,7 @@
         border-radius: 50%;
         animation: spin 0.8s linear infinite;
       }
-      
+
       @keyframes spin {
         to { transform: rotate(360deg); }
       }
@@ -53,11 +53,12 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    
+
     <div id="root">
       <div class="loading">
         <div class="loading-spinner"></div>
       </div>
     </div>
+    <script type="module" src="/src/index.jsx"></script>
   </body>
 </html>
