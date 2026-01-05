@@ -19,6 +19,7 @@ export default function FileProcessingPanel({
   const [exportedCount, setExportedCount] = useState(0);
   const [exportedSize, setExportedSize] = useState(0);
   const [exportFormat, setExportFormat] = useState('json');
+  const [downloadAfterExport, setDownloadAfterExport] = useState(false);
   const [selectAll, setSelectAll] = useState(false);
   const fileInputRef = useRef(null);
 
@@ -103,12 +104,11 @@ export default function FileProcessingPanel({
       }, 0) || 0;
       setExportedSize(size);
 
-      // Trigger download for each exported file
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
-      if (result.results) {
+      // Only trigger download if checkbox is checked
+      if (downloadAfterExport && result.results) {
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
         for (const r of result.results) {
           if (r.status === 'success' && r.output_file) {
-            // Create download link
             const link = document.createElement('a');
             link.href = `${apiUrl}/export-file/${r.output_file}`;
             link.download = r.output_file;
@@ -278,12 +278,25 @@ export default function FileProcessingPanel({
         )}
       </div>
 
+      {/* Download checkbox */}
+      <div className="download-option" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginTop: '0.75rem' }}>
+        <input
+          type="checkbox"
+          id="downloadAfterExport"
+          checked={downloadAfterExport}
+          onChange={(e) => setDownloadAfterExport(e.target.checked)}
+        />
+        <label htmlFor="downloadAfterExport" style={{ fontSize: '0.85rem', cursor: 'pointer' }}>
+          Download locally after export
+        </label>
+      </div>
+
       {/* Export button at bottom */}
       <button
         className="glass-button glass-button-primary"
         onClick={handleExportClick}
         disabled={selectedFiles.length === 0 || loading}
-        style={{ width: '100%', marginTop: '0.75rem' }}
+        style={{ width: '100%', marginTop: '0.5rem' }}
       >
         Export Selected ({selectedFiles.length})
       </button>
